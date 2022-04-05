@@ -13,8 +13,7 @@ export class UserForm {
 
 	eventsMap(): { [key: string]: () => void } {
 		return {
-			"click:.click-me": this.onButtonClick,
-			"mouseenter:h1": this.onHeaderHover,
+			"click:.set-name": this.onSetName,
 			"click:.set-age": this.onSetAge,
 		};
 	}
@@ -23,13 +22,15 @@ export class UserForm {
 		this.model.setRandomAge();
 	};
 
-	onHeaderHover(): void {
-		console.log("H1 was hovered over");
-	}
+	onSetName = (): void => {
+		const input = this.parent.querySelector("input");
 
-	onButtonClick(): void {
-		console.log("Hi there");
-	}
+		if (input) {
+			const name = input.value;
+
+			this.model.set({ name });
+		}
+	};
 
 	template(): string {
 		return `
@@ -39,7 +40,7 @@ export class UserForm {
 				<div>User Age: ${this.model.get("age")}</div>
         <input/>
 				
-        <button class="click-me">CLick ME</button>
+        <button class="set-name">Change Name</button>
 				<button class="set-age">Set Random Age</button>
       </div>
     `;

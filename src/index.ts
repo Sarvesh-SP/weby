@@ -1,5 +1,12 @@
 import { UserForm } from "./views/UserForm";
+import { User } from "./models/User";
 
-const userF = new UserForm(document.getElementById("root"));
+const user = User.buildUser({ name: "Sarvesh", age: 22 });
 
-userF.render();
+const root = document.getElementById("root");
+
+if (root) {
+	const userF = new UserForm(root, user);
+
+	userF.render();
+}
