@@ -9,4 +9,6 @@ if (root) {
 	const userF = new UserForm(root, user);
 
 	userF.render();
+} else {
+	throw new Error("Root element not found!");
 }
